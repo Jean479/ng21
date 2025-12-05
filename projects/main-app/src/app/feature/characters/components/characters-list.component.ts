@@ -1,12 +1,13 @@
 import { Component, OnInit, inject, ChangeDetectionStrategy } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { RouterLink } from '@angular/router';
 import { StarWarsService } from '../services/star-wars.service';
 import { CharacterCardComponent } from './character-card.component';
 
 @Component({
   selector: 'app-characters-list',
   standalone: true,
-  imports: [CommonModule, CharacterCardComponent],
+  imports: [CommonModule, RouterLink, CharacterCardComponent],
   template: `
     <div class="min-h-screen bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950 text-white">
       <!-- Grid background pattern -->
@@ -25,9 +26,14 @@ import { CharacterCardComponent } from './character-card.component';
         <!-- Header -->
         <header class="border-b border-cyan-500/20 bg-slate-900/50 backdrop-blur-sm sticky top-0">
           <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-            <div class="flex items-center gap-3 mb-2">
-              <div class="w-3 h-3 bg-green-400 rounded-full animate-pulse"></div>
-              <span class="text-xs font-mono text-green-400 uppercase tracking-widest">SYSTEM STATUS</span>
+            <div class="flex items-center justify-between mb-4">
+              <div class="flex items-center gap-3">
+                <div class="w-3 h-3 bg-green-400 rounded-full animate-pulse"></div>
+                <span class="text-xs font-mono text-green-400 uppercase tracking-widest">SYSTEM STATUS</span>
+              </div>
+              <a routerLink="add" class="px-4 py-2 bg-gradient-to-r from-cyan-500 to-blue-500 text-white font-mono font-bold uppercase tracking-widest text-xs rounded-lg transition-all duration-200 hover:from-cyan-400 hover:to-blue-400 hover:shadow-lg hover:shadow-cyan-500/50 border border-cyan-400/50">
+                + ADD CHARACTER
+              </a>
             </div>
             <h1 class="text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-400 to-cyan-400 font-mono uppercase tracking-wider">
               STAR WARS DATABASE
