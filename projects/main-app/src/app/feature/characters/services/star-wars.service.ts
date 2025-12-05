@@ -35,7 +35,9 @@ export class StarWarsService {
         next: (response) => {
           const mappedCharacters = response.results.map(character => ({
             id: this.extractIdFromUrl(character.url),
-            name: character.name
+            name: character.name,
+            height: 100,
+            mass: 50
           }));
           this.characters.set(mappedCharacters);
           this.isLoading.set(false);

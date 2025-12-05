@@ -1,17 +1,24 @@
 import { Component, ChangeDetectionStrategy, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { Character } from '../models/character.model';
+import { Character, characterSchema, createDefaultCharacter } from '../models/character.model';
+import { form, Field } from '@angular/forms/signals';
 
 @Component({
   selector: 'app-character-form',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, Field],
   templateUrl: './character-form.component.html',
   styleUrl: './character-form.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CharacterFormComponent {
+
+  private readonly characterState = signal(createDefaultCharacter());
+
+
+  protected readonly characterForm = form(this.characterState, characterSchema);
+
   formData = signal<Partial<Character>>({ name: '', id: 0 });
   successMessage = signal<string | null>(null);
   showPreview = signal(true);
